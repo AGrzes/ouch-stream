@@ -1,0 +1,23 @@
+{
+  "name": "ouch-stream",
+  "version": "0.0.1",
+  "description": "Library wrapping pouchdb with object streams.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGrzes/ouch-stream.git"
+  },
+  "keywords": [
+    "couchb",
+    "pouchdb",
+    "stream"
+  ],
+  "author": "Grzegorz Abramczyk <abramczykg@gmail.com> (http://abramczykg.pl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AGrzes/ouch-stream/issues"
+  },
+  "homepage": "https://github.com/AGrzes/ouch-stream#readme"
+}
