@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "Library wrapping pouchdb with object streams.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AGrzes/ouch-stream.git"
@@ -19,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/AGrzes/ouch-stream/issues"
   },
-  "homepage": "https://github.com/AGrzes/ouch-stream#readme"
+  "homepage": "https://github.com/AGrzes/ouch-stream#readme",
+  "dependencies": {
+    "mississippi": "^1.3.0"
+  }
 }
