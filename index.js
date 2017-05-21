@@ -48,6 +48,11 @@ class Ouch {
         });
         return stream;
     }
+    sink() {
+        return miss.to.obj((chunk, enc, done) => {
+            this.db.put(chunk).then(() => done()).catch((err) => done(err));
+        })
+    }
 }
 
 module.exports = Ouch;
