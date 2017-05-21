@@ -16,7 +16,7 @@ class Ouch {
                     options.skip = 1;
                     var last = result.rows.pop()
                     result.rows.forEach((row) => stream.push(row.doc));
-                    next(null, last);
+                    next(null, last.doc);
                 } else {
                     next(null, null);
                 }
