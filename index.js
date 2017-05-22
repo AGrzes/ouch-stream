@@ -53,6 +53,24 @@ class Ouch {
             this.db.put(chunk).then(() => done()).catch((err) => done(err));
         })
     }
+    merge(f) {
+      return miss.to.obj(
+          (object, encoding, callback) => {
+              var document = f(object);
+              this.db.put(document).catch((error) => {
+                  if (error.name === 'conflict') {
+                      return this.db.get(document._id).then((existing) => {
+                          return this.db.put(f(object,existing));
+                      })
+                  } else {
+                      throw error;
+                  }
+              }).then((result) => {}).catch((error) => {
+                  callback(error);
+              });
+              callback();
+          });
+    }
 }
 
 module.exports = Ouch;
