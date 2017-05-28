@@ -2,7 +2,7 @@ var assert = require('chai').assert;
 var sinon = require('sinon');
 var Ouch = require('../index');
 var miss = require('mississippi');
-describe.only('Ouch', function () {
+describe('Ouch', function () {
     describe('#merge()', function () {
 
 
