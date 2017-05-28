@@ -65,10 +65,10 @@ class Ouch {
                   } else {
                       throw error;
                   }
-              }).then((result) => {}).catch((error) => {
+              }).then(() => callback()).catch((error) => {
                   callback(error);
               });
-              callback();
+              
           });
     }
 }
