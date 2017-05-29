@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Library wrapping PouchDB with object streams.",
   "main": "index.js",
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AGrzes/ouch-stream.git"
