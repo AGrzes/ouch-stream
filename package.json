@@ -1,7 +1,7 @@
 {
   "name": "ouch-stream",
   "version": "0.0.1",
-  "description": "Library wrapping pouchdb with object streams.",
+  "description": "Library wrapping PouchDB with object streams.",
   "main": "index.js",
   "scripts": {},
   "repository": {
