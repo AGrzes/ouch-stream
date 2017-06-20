@@ -2,7 +2,7 @@
 Library wrapping [PouchDB](https://pouchdb.com/) with object streams.
 
 ## Usage
-To use Ouch Stream one have to wrapp database object with Ouch instance and then use its methods to create Readable and Writable streams.
+To use Ouch Stream one have to wrap database object with Ouch instance and then use its methods to create Readable and Writable streams.
 
     var Ouch = require('ouch-stream');
     var ouch = new Ouch(db);
@@ -41,14 +41,14 @@ Returns readable stream of view results.
 To use this method the db object must support query method.
 
 #### sink
-Returns writable stream that writes incomming objects into db. 
+Returns writable stream that writes incoming objects into db. 
 
-The operation will fail on any error so it is usefull for inserting completly new documents and for updating documents previously fetched from db (so current `_rev` is known). 
+The operation will fail on any error so it is useful for inserting completely new documents and for updating documents previously fetched from db (so current `_rev` is known). 
 
     ouch.sink()
 
 #### merge
-Returns writable stream that writes incomming objects into db. 
+Returns writable stream that writes incoming objects into db. 
 
 The operation will call the merge function with incoming object to prepare document to store. The operation will call the merge function again with incoming object and current document state if conflict is encountered. It will then retry write with the result of merge function.
 
@@ -56,4 +56,4 @@ The operation will call the merge function with incoming object to prepare docum
 
 |Argument| Description|
 |---|---|
-| mergeFunction | A mrege function `(object,current) => document to store`  |
+| mergeFunction | A merge function `(object,current) => document to store`  |
