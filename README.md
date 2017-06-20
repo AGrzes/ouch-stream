@@ -36,7 +36,7 @@ Returns readable stream of view results.
 |Argument| Description|
 |---|---|
 | name | A view name |
-| options | An options object passed to db.query. The following fields are not passed: `skip`, `limit`, `startkey` |
+| options | An options object passed to db.query. The following fields are not passed: `skip`, `limit`, `startkey`. The default pagination is using `startkey` for performance reason, setting `limit_skip` switches to use growing `skip` value. |
 
 To use this method the db object must support query method.
 
