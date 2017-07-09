@@ -1,9 +1,19 @@
 var miss = require('mississippi')
 class Ouch {
-  constructor (db) {
+  /**
+   * Creates Ouch instance.
+   * 
+   * @param {object} db - a PouchDB database 
+   */
+  constructor(db) {
     this.db = db
   }
-  all (originalOptions) {
+  /**
+   * Creates object stream listing all documents in database.
+   * 
+   * @param {object} originalOptions - options to be passed to allDocs
+   */
+  all(originalOptions) {
     var options = Object.assign({}, originalOptions, {
       include_docs: true,
       skip: 0
@@ -27,7 +37,13 @@ class Ouch {
     })
     return stream
   }
-  view (view, originalOptions) {
+  /**
+   * Creates object stream listing documents from view.
+   * 
+   * @param {(string|function)} view - name of persistent view of function for a temporary view
+   * @param {object} originalOptions - options to be passed to query
+   */
+  view(view, originalOptions) {
     var options = Object.assign({}, originalOptions, {
       skip: 0
     })
@@ -71,12 +87,22 @@ class Ouch {
       return stream
     }
   }
-  sink () {
+  /**
+   * Creates object write stream receiving documents and string them in database.    
+   */
+  sink() {
     return miss.to.obj((chunk, enc, done) => {
       this.db.put(chunk).then(() => done()).catch((err) => done(err))
     })
   }
-  merge (f) {
+
+  /**
+   * Creates object write stream receiving documents and string them in database. 
+   * 
+   * Uses provided function to resolve merge conflicts.
+   * @param {mergeCallback} f - merge callback
+   */
+  merge(f) {
     return miss.to.obj(
       (object, encoding, callback) => {
         var document = f(object)
@@ -96,3 +122,13 @@ class Ouch {
 }
 
 module.exports = Ouch
+/**
+ * Merge callback generating merged document from incoming and existing document.
+ * 
+ * Must handle the case when existing document is undefined
+ * 
+ * @callback mergeCallback
+ * @param {object} incoming - an incoming document
+ * @param {object=} existing - an existing document 
+ * @return {object} merged document
+ */
