@@ -8,6 +8,7 @@
     "url": "git+https://github.com/AGrzes/ouch-stream.git"
   },
   "scripts": {
+    "pretest": "eslint .",
     "test": "mocha"
   },
   "keywords": [
@@ -26,6 +27,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^4.2.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.4.1",
     "sinon": "^2.3.0"
   }
