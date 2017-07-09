@@ -83,6 +83,35 @@ describe('Ouch', function () {
           done();
         });
       });
+      it('should set startkey_docid to last id of previous batch', function (done) {
+        var result = [{
+          rows: [{
+            id: "1",
+            key: "a"
+          }]
+        }, {
+          rows: [{
+            id: "2",
+            key: "b"
+          }]
+        }].reverse();
+        var db = {
+          query: sinon.spy(() => Promise.resolve(result.pop()))
+        }
+        var rows = []
+        miss.pipe(new Ouch(db).view('view/name'), miss.to.obj((row, _2, cb) => {
+          rows.push(row)
+          cb();
+        }), () => {
+          var options = db.query.getCall(1).args[1];
+          assert.isDefined(options);
+          assert.equal(options.startkey_docid, "1");
+          options = db.query.getCall(2).args[1];
+          assert.isDefined(options);
+          assert.equal(options.startkey_docid, "2");
+          done();
+        });
+      });      
       it('should set skip to 1 in all batches after first', function (done) {
         var result = [{
           rows: [{
