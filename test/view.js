@@ -209,6 +209,28 @@ describe('Ouch', function () {
           done()
         })
       })
+      it('should finish on empty batch', function (done) {
+        var result = [{
+          rows: ['a']
+        }, {
+          rows: []
+        }, {
+          rows: ['b']
+        }].reverse()
+        var db = {
+          query: sinon.spy(() => Promise.resolve(result.pop()))
+        }
+        var rows = []
+        miss.pipe(new Ouch(db).view('view/name', {
+          limit_skip: true
+        }), miss.to.obj((row, _2, cb) => {
+          rows.push(row)
+          cb()
+        }), () => {
+          assert.deepEqual(rows, ['a'])
+          done()
+        })
+      })
     })
 
     it('should read rows', function (done) {
