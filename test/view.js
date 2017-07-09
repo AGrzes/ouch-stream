@@ -133,6 +133,26 @@ describe('Ouch', function () {
           done()
         })
       })
+      it('should finish on empty batch', function (done) {
+        var result = [{
+          rows: ['a']
+        }, {
+          rows: []
+        }, {
+          rows: ['b']
+        }].reverse()
+        var db = {
+          query: sinon.spy(() => Promise.resolve(result.pop()))
+        }
+        var rows = []
+        miss.pipe(new Ouch(db).view('view/name'), miss.to.obj((row, _2, cb) => {
+          rows.push(row)
+          cb()
+        }), () => {
+          assert.deepEqual(rows, ['a'])
+          done()
+        })
+      })
     })
 
     describe('limit+skip pagination', function () {
@@ -186,6 +206,28 @@ describe('Ouch', function () {
           options = db.query.getCall(2).args[1]
           assert.isDefined(options)
           assert.equal(options.skip, 6)
+          done()
+        })
+      })
+      it('should finish on empty batch', function (done) {
+        var result = [{
+          rows: ['a']
+        }, {
+          rows: []
+        }, {
+          rows: ['b']
+        }].reverse()
+        var db = {
+          query: sinon.spy(() => Promise.resolve(result.pop()))
+        }
+        var rows = []
+        miss.pipe(new Ouch(db).view('view/name', {
+          limit_skip: true
+        }), miss.to.obj((row, _2, cb) => {
+          rows.push(row)
+          cb()
+        }), () => {
+          assert.deepEqual(rows, ['a'])
           done()
         })
       })

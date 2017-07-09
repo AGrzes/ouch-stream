@@ -11,6 +11,7 @@ class Ouch {
     var stream = miss.from.obj((size, next) => {
       options.limit = options.skip + size
       this.db.allDocs(options).then((result) => {
+        options = Object.assign({}, options)
         if (result.rows.length > 0) {
           options.startkey = result.rows[result.rows.length - 1].key
           options.skip = 1
